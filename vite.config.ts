@@ -20,9 +20,10 @@ export default defineConfig(({ mode }) => {
       hmr: process.env.DISABLE_HMR !== 'true',
     },
     test: {
-      environment: 'jsdom',
+      environment: 'happy-dom',
       globals: true,
-      setupFiles: './src/setupTests.ts',
+      setupFiles: './src/tests/setupTests.ts',
+      css: true,
     },
   };
 });

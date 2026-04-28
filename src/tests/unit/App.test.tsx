@@ -96,12 +96,17 @@ describe("OVU landing page", () => {
 
     expect(screen.getByText(/strictly excluded/i)).toBeInTheDocument();
 
-    expect(screen.getByText(/pr/i)).toBeInTheDocument();
-    expect(screen.getByText(/seo/i)).toBeInTheDocument();
-    expect(screen.getByText(/logos/i)).toBeInTheDocument();
-    expect(screen.getByText(/social posts/i)).toBeInTheDocument();
-    expect(screen.getByText(/influencers/i)).toBeInTheDocument();
-    expect(screen.getByText(/newsletters/i)).toBeInTheDocument();
+    // Use getAllByText for short patterns that may match multiple elements
+    const prElements = screen.getAllByText(/^PR$/);
+    expect(prElements.length).toBeGreaterThanOrEqual(1);
+
+    const seoElements = screen.getAllByText(/^SEO$/);
+    expect(seoElements.length).toBeGreaterThanOrEqual(1);
+
+    expect(screen.getByText(/^Logos$/)).toBeInTheDocument();
+    expect(screen.getByText(/^Social Posts$/)).toBeInTheDocument();
+    expect(screen.getByText(/^Influencers$/)).toBeInTheDocument();
+    expect(screen.getByText(/^Newsletters$/)).toBeInTheDocument();
   });
 
   it("renders the feature/protocol section", () => {
