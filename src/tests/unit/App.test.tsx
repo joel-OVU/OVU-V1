@@ -207,11 +207,8 @@ describe("OVU landing page", () => {
     expect(screen.getByText(/conversion audit/i)).toBeInTheDocument();
     expect(screen.getByText(/roi roadmap/i)).toBeInTheDocument();
 
-    expect(
-      screen.getByRole("button", { name: /access calendar/i })
-    ).toBeInTheDocument();
-
-    expect(screen.getByText(/protocol active/i)).toBeInTheDocument();
+    // Cal.com embed replaces the old Access Calendar button
+    expect(screen.getByText(/initial consultation/i)).toBeInTheDocument();
 
     if (SHOW_TESTIMONIALS) {
       expect(screen.getByText(/sarah collins/i)).toBeInTheDocument();
@@ -243,7 +240,6 @@ describe("OVU landing page", () => {
     render(<App />);
 
     expect(screen.getByText(/© 2026 ovu digital ltd/i)).toBeInTheDocument();
-    expect(screen.getByText(/company number: 11178977/i)).toBeInTheDocument();
 
     expect(screen.getByRole("link", { name: /email/i })).toHaveAttribute(
       "href",

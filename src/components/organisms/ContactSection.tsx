@@ -1,11 +1,70 @@
-import { ArrowRight, BarChart3, Calendar, Megaphone } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { BarChart3, Calendar } from "lucide-react";
 import { contact } from "@/src/content/en";
 import { contactStyles as cs } from "@/src/styles/contact";
 import { SHOW_TESTIMONIALS } from "@/src/config/flags";
 import BenefitItem from "@/src/components/molecules/BenefitItem";
 import Testimonial from "@/src/components/molecules/Testimonial";
 
+const CAL_EMBED_ID = "cal-inline-embed";
+
 export default function ContactSection() {
+  const calInitialized = useRef(false);
+
+  useEffect(() => {
+    if (calInitialized.current) return;
+    calInitialized.current = true;
+
+    // Replicate the Cal.com IIFE — sets up window.Cal queuing, then loads embed.js
+    const w = window as any;
+    const p = (a: any, ar: any) => { a.q.push(ar); };
+    const d = document;
+
+    w.Cal = w.Cal || function (...args: any[]) {
+      const cal = w.Cal;
+      const ar = args;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        const s = d.createElement("script");
+        s.src = "https://app.cal.com/embed/embed.js";
+        d.head.appendChild(s);
+        cal.loaded = true;
+      }
+      if (ar[0] === "init") {
+        const api = function (...a: any[]) { p(api, a); };
+        const namespace = ar[1];
+        (api as any).q = (api as any).q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ["initNamespace", namespace]);
+        } else {
+          p(cal, ar);
+        }
+        return;
+      }
+      p(cal, ar);
+    };
+
+    w.Cal("init", "discovery-call", { origin: "https://app.cal.com" });
+
+    w.Cal.ns["discovery-call"]("inline", {
+      elementOrSelector: `#${CAL_EMBED_ID}`,
+      config: { layout: "month_view", useSlotsViewOnSmallScreen: "true" },
+      calLink: "joel-ovu/discovery-call",
+    });
+
+    w.Cal.ns["discovery-call"]("ui", {
+      cssVarsPerTheme: {
+        light: { "cal-brand": "#ffffff" },
+        dark: { "cal-brand": "#ffffff" },
+      },
+      hideEventTypeDetails: false,
+      layout: "month_view",
+    });
+  }, []);
+
   return (
     <section id="contact" className={cs.section}>
       <div className={cs.grid}>
@@ -40,7 +99,7 @@ export default function ContactSection() {
           )}
         </div>
 
-        {/* Portal Card */}
+        {/* Protocol Portal — Cal.com Inline Embed */}
         <div className={cs.portalWrap}>
           <div className={cs.portalGlow} />
           <div className={cs.portalCard}>
@@ -52,18 +111,12 @@ export default function ContactSection() {
               </div>
               <div className={cs.portalLabel}>{contact.portal.label}</div>
             </div>
-            <div className={cs.portalBody}>
-              <div className={cs.portalIconWrap}>
-                <Megaphone className={cs.portalIconInner} />
-              </div>
-              <h3 className={cs.portalTitle}>{contact.portal.title}</h3>
-              <p className={cs.portalDesc}>{contact.portal.description}</p>
-              <div className={cs.portalActions}>
-                <button className={cs.portalCta}>
-                  {contact.portal.cta} <ArrowRight className={cs.portalCtaIcon} />
-                </button>
-                <p className={cs.portalStatus}>{contact.portal.status}</p>
-              </div>
+            <div className="w-full overflow-hidden px-2 md:px-4 pb-4">
+              <div
+                id={CAL_EMBED_ID}
+                style={{ width: "100%", height: "100%", overflow: "scroll" }}
+                className="min-h-[520px] md:min-h-[600px] rounded-2xl"
+              />
             </div>
           </div>
         </div>

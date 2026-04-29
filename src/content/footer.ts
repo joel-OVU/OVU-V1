@@ -3,7 +3,6 @@ export const footer = {
     "Engineering the architecture of business growth. A premium digital enquiry flow optimization service.",
   company: {
     name: "Ovu Digital Ltd.",
-    companyNumber: "11178977",
   },
   columns: {
     protocol: {

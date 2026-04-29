@@ -1,4 +1,3 @@
-import { Megaphone } from "lucide-react";
 import { navbar, footer } from "@/src/content/en";
 import { footerStyles as fts } from "@/src/styles/footer";
 import { SHOW_RESULTS, SHOW_CASE_STUDIES } from "@/src/config/flags";
@@ -12,14 +11,12 @@ export default function SiteFooter() {
       <div className={fts.container}>
         <div className={fts.brandCol}>
           <a href="#hero" className={fts.brandLink}>
-            <Megaphone className={fts.brandIcon} />
-            {navbar.logo}
+            <img src="/ovu-logo.png" alt="OVU logo" className="h-6 w-auto" />
           </a>
           <p className={fts.brandText}>
             {footer.tagline}
             <br /><br />
-            © {new Date().getFullYear()} {footer.company.name} <br />
-            Company Number: {footer.company.companyNumber}.
+            © {new Date().getFullYear()} {footer.company.name}
           </p>
         </div>
         <div className={fts.columns}>

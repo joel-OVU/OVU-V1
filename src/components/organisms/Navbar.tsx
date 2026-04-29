@@ -1,5 +1,4 @@
 import { motion } from "motion/react";
-import { Megaphone } from "lucide-react";
 import { navbar } from "@/src/content/en";
 import { navbarStyles as ns } from "@/src/styles/navbar";
 import { SHOW_RESULTS, SHOW_CASE_STUDIES } from "@/src/config/flags";
@@ -19,10 +18,7 @@ export default function Navbar() {
         className={ns.logoGroup}
       >
         <a href="#hero" className={ns.logoLink}>
-          <div className={ns.logoIcon}>
-            <Megaphone className={ns.logoIconInner} />
-          </div>
-          {navbar.logo}
+          <img src="/ovu-logo.png" alt="OVU logo" className="h-8 w-auto" />
         </a>
       </motion.div>
 
