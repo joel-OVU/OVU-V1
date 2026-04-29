@@ -10,7 +10,7 @@ export const footer = {
       heading: "Protocol",
       links: [
         { label: "Services", href: "#services" },
-        { label: "Client Results", href: "#success" },
+        { label: "Client Results", href: "#success", requiresResults: true },
         { label: "Framework", href: "#features" },
       ],
     },

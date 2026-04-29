@@ -5,7 +5,7 @@ export const about = {
     highlight: "specific kind of partner.",
   },
   paragraphs: [
-    "Our client case studies have become myth, and our waiting list is longer than your complaints with your current agency.",
+    "OVU is built for businesses that want their website to do more than look good. We focus on clarity, trust, and the path from visitor to enquiry.",
     "We do away with the inefficiencies & formalities that plague most agencies. We don't care about your brand color palette - we care about your conversion rate.",
   ],
   cta: "Apply to work with OVU",

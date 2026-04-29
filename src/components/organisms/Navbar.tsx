@@ -2,8 +2,15 @@ import { motion } from "motion/react";
 import { Megaphone } from "lucide-react";
 import { navbar } from "@/src/content/en";
 import { navbarStyles as ns } from "@/src/styles/navbar";
+import { SHOW_RESULTS, SHOW_CASE_STUDIES } from "@/src/config/flags";
+
+/** IDs of sections hidden by feature flags */
+const hiddenSections = new Set<string>();
+if (!SHOW_RESULTS && !SHOW_CASE_STUDIES) hiddenSections.add("success");
 
 export default function Navbar() {
+  const visibleLinks = navbar.links.filter((link) => !hiddenSections.has(link.id));
+
   return (
     <nav id="navbar" className={ns.nav}>
       <motion.div
@@ -24,7 +31,7 @@ export default function Navbar() {
         animate={{ opacity: 1, y: 0 }}
         className={ns.linksGroup}
       >
-        {navbar.links.map((item) => (
+        {visibleLinks.map((item) => (
           <a key={item.id} href={`#${item.id}`} className={ns.link}>
             {item.name}
           </a>

@@ -2,6 +2,9 @@ import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import App from "../../App";
+import { SHOW_RESULTS, SHOW_CASE_STUDIES, SHOW_TESTIMONIALS } from "@/src/config/flags";
+
+const showSuccess = SHOW_RESULTS || SHOW_CASE_STUDIES;
 
 describe("OVU landing page", () => {
   it("renders the main navigation and primary CTA", () => {
@@ -29,10 +32,14 @@ describe("OVU landing page", () => {
       "#about"
     );
 
-    expect(within(nav).getByRole("link", { name: /success/i })).toHaveAttribute(
-      "href",
-      "#success"
-    );
+    if (showSuccess) {
+      expect(within(nav).getByRole("link", { name: /success/i })).toHaveAttribute(
+        "href",
+        "#success"
+      );
+    } else {
+      expect(within(nav).queryByRole("link", { name: /success/i })).toBeNull();
+    }
 
     expect(within(nav).getByRole("link", { name: /faq/i })).toHaveAttribute(
       "href",
@@ -69,10 +76,17 @@ describe("OVU landing page", () => {
       screen.getByRole("link", { name: /schedule your free audit/i })
     ).toHaveAttribute("href", "#contact");
 
-    expect(screen.getByRole("link", { name: /our results/i })).toHaveAttribute(
-      "href",
-      "#success"
-    );
+    if (showSuccess) {
+      expect(screen.getByRole("link", { name: /our results/i })).toHaveAttribute(
+        "href",
+        "#success"
+      );
+    } else {
+      expect(screen.getByRole("link", { name: /explore services/i })).toHaveAttribute(
+        "href",
+        "#services"
+      );
+    }
   });
 
   it("renders the services section", () => {
@@ -144,36 +158,41 @@ describe("OVU landing page", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders client results and case studies", () => {
+  it("conditionally renders client results and case studies", () => {
     render(<App />);
 
-    expect(
-      screen.getByRole("heading", { name: /elite results for real local businesses/i })
-    ).toBeInTheDocument();
+    if (showSuccess) {
+      expect(
+        screen.getByRole("heading", { name: /elite results for real local businesses/i })
+      ).toBeInTheDocument();
 
-    expect(screen.getByText(/£1\.2m\+/i)).toBeInTheDocument();
-    expect(screen.getByText(/18\.5%/i)).toBeInTheDocument();
+      expect(screen.getByText(/£1\.2m\+/i)).toBeInTheDocument();
+      expect(screen.getByText(/18\.5%/i)).toBeInTheDocument();
 
-    expect(
-      screen.getByRole("heading", { name: /global property collective/i })
-    ).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { name: /global property collective/i })
+      ).toBeInTheDocument();
 
-    expect(
-      screen.getByRole("heading", { name: /aesthetic medical center/i })
-    ).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { name: /aesthetic medical center/i })
+      ).toBeInTheDocument();
 
-    expect(
-      screen.getByRole("heading", { name: /the kensington suites/i })
-    ).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { name: /the kensington suites/i })
+      ).toBeInTheDocument();
 
-    expect(
-      screen.getByRole("heading", { name: /tech solutions uk/i })
-    ).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { name: /tech solutions uk/i })
+      ).toBeInTheDocument();
+    } else {
+      // Success section should not render when flags are off
+      expect(
+        screen.queryByRole("heading", { name: /elite results for real local businesses/i })
+      ).toBeNull();
 
-    expect(screen.getByAltText(/global property collective/i)).toBeInTheDocument();
-    expect(screen.getByAltText(/aesthetic medical center/i)).toBeInTheDocument();
-    expect(screen.getByAltText(/the kensington suites/i)).toBeInTheDocument();
-    expect(screen.getByAltText(/tech solutions uk/i)).toBeInTheDocument();
+      expect(screen.queryByText(/£1\.2m\+/i)).toBeNull();
+      expect(screen.queryByText(/global property collective/i)).toBeNull();
+    }
   });
 
   it("renders the contact section", () => {
@@ -193,6 +212,12 @@ describe("OVU landing page", () => {
     ).toBeInTheDocument();
 
     expect(screen.getByText(/protocol active/i)).toBeInTheDocument();
+
+    if (SHOW_TESTIMONIALS) {
+      expect(screen.getByText(/sarah collins/i)).toBeInTheDocument();
+    } else {
+      expect(screen.queryByText(/sarah collins/i)).toBeNull();
+    }
   });
 
   it("renders the FAQ section", () => {

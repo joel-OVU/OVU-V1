@@ -1,6 +1,7 @@
 import { ArrowRight, BarChart3, Calendar, Megaphone } from "lucide-react";
 import { contact } from "@/src/content/en";
 import { contactStyles as cs } from "@/src/styles/contact";
+import { SHOW_TESTIMONIALS } from "@/src/config/flags";
 import BenefitItem from "@/src/components/molecules/BenefitItem";
 import Testimonial from "@/src/components/molecules/Testimonial";
 
@@ -29,12 +30,14 @@ export default function ContactSection() {
             />
           </div>
 
-          <Testimonial
-            quote={contact.testimonial.quote}
-            initials={contact.testimonial.initials}
-            name={contact.testimonial.name}
-            role={contact.testimonial.role}
-          />
+          {SHOW_TESTIMONIALS && (
+            <Testimonial
+              quote={contact.testimonial.quote}
+              initials={contact.testimonial.initials}
+              name={contact.testimonial.name}
+              role={contact.testimonial.role}
+            />
+          )}
         </div>
 
         {/* Portal Card */}

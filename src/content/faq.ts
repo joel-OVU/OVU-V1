@@ -4,7 +4,7 @@ export const faq = {
     {
       question: "How fast will the protocol deliver results?",
       answer:
-        "Most OVU partners see their first high-quality enquiries within 72-96 hours of protocol launch. We optimize for speed and immediate data feedback.",
+        "Timelines depend on your current setup, traffic, and offer. The first step is identifying the biggest bottlenecks in your enquiry flow.",
     },
     {
       question: "Is OVU suitable for local retail?",
@@ -19,7 +19,7 @@ export const faq = {
     {
       question: "What is the minimum requirements to start?",
       answer:
-        "We require a foundation that can support growth. This includes a minimum ad budget of £2,500/month and a service with established market history.",
+        "The best starting point is an existing service, a clear offer, and a willingness to improve how enquiries are captured and followed up.",
     },
   ],
 } as const;

@@ -5,7 +5,7 @@ export const contact = {
     highlight: "scale with OVU.",
   },
   description:
-    "We only partner with businesses where we can provide a minimum 5x return. During this 15-minute growth audit, we'll determine if you're a fit for our enquiry protocol.",
+    "We work best with service businesses where clearer positioning, stronger pages, and better enquiry flow can make a meaningful difference.",
   benefits: [
     {
       title: "Conversion Audit",

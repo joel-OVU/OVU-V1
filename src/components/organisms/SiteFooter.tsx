@@ -1,7 +1,10 @@
 import { Megaphone } from "lucide-react";
 import { navbar, footer } from "@/src/content/en";
 import { footerStyles as fts } from "@/src/styles/footer";
+import { SHOW_RESULTS, SHOW_CASE_STUDIES } from "@/src/config/flags";
 import FooterColumn from "@/src/components/molecules/FooterColumn";
+
+const showResults = SHOW_RESULTS || SHOW_CASE_STUDIES;
 
 export default function SiteFooter() {
   return (
@@ -20,9 +23,14 @@ export default function SiteFooter() {
           </p>
         </div>
         <div className={fts.columns}>
-          {Object.values(footer.columns).map((column) => (
-            <FooterColumn key={column.heading} heading={column.heading} links={column.links} />
-          ))}
+          {Object.values(footer.columns).map((column) => {
+            const visibleLinks = column.links.filter(
+              (link) => !("requiresResults" in link && link.requiresResults && !showResults)
+            );
+            return (
+              <FooterColumn key={column.heading} heading={column.heading} links={visibleLinks} />
+            );
+          })}
         </div>
       </div>
       <div className={fts.marquee}>{footer.marquee}</div>

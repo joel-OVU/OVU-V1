@@ -3,7 +3,12 @@ import { ArrowRight } from "lucide-react";
 import { hero } from "@/src/content/en";
 import { heroStyles as hs } from "@/src/styles/hero";
 import { styles } from "@/src/styles/shared";
+import { SHOW_RESULTS, SHOW_CASE_STUDIES } from "@/src/config/flags";
 import ScrollIndicator from "@/src/components/atoms/ScrollIndicator";
+
+const showResults = SHOW_RESULTS || SHOW_CASE_STUDIES;
+const secondaryCtaText = showResults ? hero.secondaryCta : hero.secondaryCtaFallback;
+const secondaryCtaHref = showResults ? "#success" : "#services";
 
 interface HeroSectionProps {
   opacity: MotionValue<number>;
@@ -71,8 +76,8 @@ export default function HeroSection({ opacity, scale }: HeroSectionProps) {
           <a href="#contact" className={hs.ctaPrimary}>
             {hero.primaryCta} <ArrowRight className={styles.iconMd} />
           </a>
-          <a href="#success" className={hs.ctaSecondary}>
-            {hero.secondaryCta}
+          <a href={secondaryCtaHref} className={hs.ctaSecondary}>
+            {secondaryCtaText}
           </a>
         </motion.div>
       </motion.div>
