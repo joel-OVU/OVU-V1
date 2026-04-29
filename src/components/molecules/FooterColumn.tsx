@@ -1,4 +1,5 @@
 import { footerStyles as fts } from "@/src/styles/footer";
+import { track } from "@/src/lib/track";
 
 interface FooterColumnProps {
   heading: string;
@@ -12,7 +13,11 @@ export default function FooterColumn({ heading, links }: FooterColumnProps) {
       <ul className={fts.columnList}>
         {links.map((link) => (
           <li key={link.label}>
-            <a href={link.href} className={fts.columnLink}>{link.label}</a>
+            <a
+              href={link.href}
+              className={fts.columnLink}
+              onClick={() => track("footer link clicked", { label: link.label, href: link.href, column: heading })}
+            >{link.label}</a>
           </li>
         ))}
       </ul>

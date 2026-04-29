@@ -29,7 +29,7 @@ export default function Navbar() {
         className={ns.linksGroup}
       >
         {visibleLinks.map((item) => (
-          <a key={item.id} href={`#${item.id}`} className={ns.link}>
+          <a key={item.id} href={`#${item.id}`} className={ns.link} onClick={() => track("nav link clicked", { section: item.id, label: item.name })}>
             {item.name}
           </a>
         ))}

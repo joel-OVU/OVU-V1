@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { faqStyles as qs } from "@/src/styles/faq";
+import { track } from "@/src/lib/track";
 
 interface FaqCardProps {
   question: string;
@@ -13,6 +14,7 @@ export default function FaqCard({ question, answer }: FaqCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       className={qs.card}
+      onClick={() => track("faq question expanded", { question })}
     >
       <h4 className={qs.question}>{question}</h4>
       <p className={qs.answer}>{answer}</p>

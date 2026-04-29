@@ -1,10 +1,30 @@
+import { useEffect, useRef } from "react";
 import { Zap, Target } from "lucide-react";
 import { features } from "@/src/content/en";
 import { featuresStyles as fs } from "@/src/styles/features";
+import { track } from "@/src/lib/track";
 
 export default function FeaturesSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          track("features section viewed");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="features" className={fs.section}>
+    <section id="features" ref={sectionRef} className={fs.section}>
       <div className={fs.bgOverlay}>
         <svg viewBox="0 0 400 400" className={fs.bgSvg}>
           <circle cx="200" cy="200" r="150" fill="none" stroke="currentColor" strokeWidth="0.5" />
