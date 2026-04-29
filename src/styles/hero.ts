@@ -1,0 +1,15 @@
+export const heroStyles = {
+  section: "relative h-screen flex flex-col items-center justify-center text-center px-6 pt-20 pb-40 md:pb-48 overflow-hidden",
+  contentWrap: "max-w-5xl",
+  tag: "font-mono text-sm uppercase tracking-widest text-accent mb-6",
+  heading: "text-6xl md:text-8xl font-medium leading-[0.9] tracking-[-0.05em] mb-8",
+  headingWord: "inline-block mr-[0.2em]",
+  headingWordAccent: "inline-block mr-[0.2em] italic text-ink/30",
+  subheading: "text-xl md:text-2xl text-ink/60 max-w-2xl mx-auto mb-12 font-light",
+  ctaGroup: "flex flex-col sm:flex-row gap-4 justify-center",
+  ctaPrimary: "px-10 py-5 bg-ink text-paper rounded-full text-lg font-medium hover:scale-105 transition-transform flex items-center gap-3",
+  ctaSecondary: "px-10 py-5 bg-transparent border border-ink/10 rounded-full text-lg font-medium hover:bg-ink/5 transition-colors",
+  scrollIndicator: "absolute bottom-6",
+  scrollOuter: "w-5 h-10 rounded-full border border-ink/20 flex justify-center p-1",
+  scrollDot: "w-1 h-2 bg-ink/40 rounded-full",
+} as const;
