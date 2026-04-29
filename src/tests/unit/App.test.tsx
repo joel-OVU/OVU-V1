@@ -207,8 +207,8 @@ describe("OVU landing page", () => {
     expect(screen.getByText(/conversion audit/i)).toBeInTheDocument();
     expect(screen.getByText(/roi roadmap/i)).toBeInTheDocument();
 
-    // Cal.com embed replaces the old Access Calendar button
-    expect(screen.getByText(/initial consultation/i)).toBeInTheDocument();
+    // Cal.com embed renders inside the Protocol Portal card
+    expect(screen.getByText(/protocol portal/i)).toBeInTheDocument();
 
     if (SHOW_TESTIMONIALS) {
       expect(screen.getByText(/sarah collins/i)).toBeInTheDocument();
@@ -243,7 +243,7 @@ describe("OVU landing page", () => {
 
     expect(screen.getByRole("link", { name: /email/i })).toHaveAttribute(
       "href",
-      "mailto:hello@ovu.digital"
+      "mailto:joel.ndlovu@ingeous-media.co.uk"
     );
 
     expect(screen.getByRole("link", { name: /terms/i })).toBeInTheDocument();

@@ -16,8 +16,8 @@ export const footer = {
     connect: {
       heading: "Connect",
       links: [
-        { label: "LinkedIn", href: "#" },
-        { label: "Email", href: "mailto:hello@ovu.digital" },
+        { label: "LinkedIn", href: "https://www.linkedin.com/company/ovu-digital/" },
+        { label: "Email", href: "mailto:joel.ndlovu@ingeous-media.co.uk" },
       ],
     },
     legal: {

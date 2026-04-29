@@ -15,7 +15,6 @@ export default function ContactSection() {
     if (calInitialized.current) return;
     calInitialized.current = true;
 
-    // Replicate the Cal.com IIFE — sets up window.Cal queuing, then loads embed.js
     const w = window as any;
     const p = (a: any, ar: any) => { a.q.push(ar); };
     const d = document;
@@ -51,14 +50,19 @@ export default function ContactSection() {
 
     w.Cal.ns["discovery-call"]("inline", {
       elementOrSelector: `#${CAL_EMBED_ID}`,
-      config: { layout: "month_view", useSlotsViewOnSmallScreen: "true" },
+      config: { layout: "month_view", useSlotsViewOnSmallScreen: "true", theme: "light" },
       calLink: "joel-ovu/discovery-call",
     });
 
+    // Permanently light — no system theme detection
     w.Cal.ns["discovery-call"]("ui", {
+      theme: "light",
       cssVarsPerTheme: {
-        light: { "cal-brand": "#ffffff" },
-        dark: { "cal-brand": "#ffffff" },
+        light: {
+          "cal-brand": "#FC3792",
+          "cal-bg": "#ffffff",
+          "cal-bg-emphasis": "#f9f7f3",
+        },
       },
       hideEventTypeDetails: false,
       layout: "month_view",
@@ -100,9 +104,12 @@ export default function ContactSection() {
         </div>
 
         {/* Protocol Portal — Cal.com Inline Embed */}
-        <div className={cs.portalWrap}>
-          <div className={cs.portalGlow} />
-          <div className={cs.portalCard}>
+        <div className="relative">
+          {/* Soft circular glow — no square edges */}
+          <div className="absolute inset-6 rounded-full bg-accent/5 blur-3xl pointer-events-none" />
+
+          {/* Clean white card */}
+          <div className="relative bg-white border border-ink/5 shadow-xl rounded-[32px] overflow-hidden min-h-[600px] flex flex-col">
             <div className={cs.portalHeader}>
               <div className={cs.portalDots}>
                 <div className={cs.portalDotRed} />
@@ -111,11 +118,13 @@ export default function ContactSection() {
               </div>
               <div className={cs.portalLabel}>{contact.portal.label}</div>
             </div>
-            <div className="w-full overflow-hidden px-2 md:px-4 pb-4">
+
+            {/* Cal.com embed wrapper */}
+            <div className="w-full flex-1 bg-white rounded-2xl overflow-hidden border border-ink/5 mx-auto px-2 md:px-4 pb-4">
               <div
                 id={CAL_EMBED_ID}
+                className="w-full min-h-[620px] md:min-h-[700px] border-0 bg-white"
                 style={{ width: "100%", height: "100%", overflow: "scroll" }}
-                className="min-h-[520px] md:min-h-[600px] rounded-2xl"
               />
             </div>
           </div>
