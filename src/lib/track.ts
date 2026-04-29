@@ -1,22 +1,31 @@
-// Browser-side analytics helper.
-// Generates an anonymous distinct ID and POSTs events to the server-side
-// /api/events endpoint, which forwards them to PostHog via posthog-node.
+// Client-side analytics helper powered by PostHog.
+// Autocapture handles most interactions automatically.
+// Use track() for explicit custom events.
 
-function getDistinctId(): string {
-  const key = 'ph_distinct_id'
-  let id = sessionStorage.getItem(key)
-  if (!id) {
-    id = `anon_${Math.random().toString(36).slice(2)}_${Date.now()}`
-    sessionStorage.setItem(key, id)
+import posthog from "posthog-js";
+import { POSTHOG_API_KEY, POSTHOG_HOST } from "@/src/config/posthog";
+
+let initialized = false;
+
+/** Initialize PostHog — call once at app startup. */
+export function initAnalytics(): void {
+  if (initialized) return;
+  if (POSTHOG_API_KEY.includes("REPLACE")) {
+    console.warn("[PostHog] API key not set — analytics disabled. Update src/config/posthog.ts");
+    return;
   }
-  return id
+  posthog.init(POSTHOG_API_KEY, {
+    api_host: POSTHOG_HOST,
+    autocapture: true,
+    capture_pageview: true,
+    capture_pageleave: true,
+    persistence: "localStorage+cookie",
+  });
+  initialized = true;
 }
 
+/** Track a custom event. Falls back silently if PostHog isn't initialized. */
 export function track(event: string, properties?: Record<string, unknown>): void {
-  const distinctId = getDistinctId()
-  fetch('/api/events', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ event, distinctId, properties }),
-  }).catch(() => {})
+  if (!initialized) return;
+  posthog.capture(event, properties);
 }
