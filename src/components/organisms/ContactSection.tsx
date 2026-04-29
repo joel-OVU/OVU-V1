@@ -5,11 +5,13 @@ import { contactStyles as cs } from "@/src/styles/contact";
 import { SHOW_TESTIMONIALS } from "@/src/config/flags";
 import BenefitItem from "@/src/components/molecules/BenefitItem";
 import Testimonial from "@/src/components/molecules/Testimonial";
+import { track } from "@/src/lib/track";
 
 const CAL_EMBED_ID = "cal-inline-embed";
 
 export default function ContactSection() {
   const calInitialized = useRef(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (calInitialized.current) return;
@@ -67,10 +69,41 @@ export default function ContactSection() {
       hideEventTypeDetails: false,
       layout: "month_view",
     });
+
+    // Track Cal.com booking interactions
+    w.Cal.ns["discovery-call"]("on", {
+      action: "timeslotSelected",
+      callback: () => {
+        track("discovery call booking initiated", { calendar: "discovery-call" });
+      },
+    });
+    w.Cal.ns["discovery-call"]("on", {
+      action: "bookingSuccessful",
+      callback: () => {
+        track("discovery call scheduled", { calendar: "discovery-call" });
+      },
+    });
+  }, []);
+
+  // Track when the contact section scrolls into view
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          track("contact section viewed");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="contact" className={cs.section}>
+    <section id="contact" ref={sectionRef} className={cs.section}>
       <div className={cs.grid}>
         <div>
           <div className={cs.tag}>{contact.tag}</div>

@@ -4,6 +4,7 @@
  */
 
 import { useScroll, useTransform } from "motion/react";
+import { Analytics } from "@vercel/analytics/react";
 import { styles } from "@/src/styles/shared";
 import { SHOW_RESULTS, SHOW_CASE_STUDIES } from "@/src/config/flags";
 import Navbar from "@/src/components/organisms/Navbar";
@@ -34,6 +35,7 @@ export default function App() {
       <ContactSection />
       <FaqSection />
       <SiteFooter />
+      <Analytics />
     </div>
   );
 }

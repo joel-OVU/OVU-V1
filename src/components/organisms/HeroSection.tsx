@@ -5,6 +5,7 @@ import { heroStyles as hs } from "@/src/styles/hero";
 import { styles } from "@/src/styles/shared";
 import { SHOW_RESULTS, SHOW_CASE_STUDIES } from "@/src/config/flags";
 import ScrollIndicator from "@/src/components/atoms/ScrollIndicator";
+import { track } from "@/src/lib/track";
 
 const showResults = SHOW_RESULTS || SHOW_CASE_STUDIES;
 const secondaryCtaText = showResults ? hero.secondaryCta : hero.secondaryCtaFallback;
@@ -73,10 +74,10 @@ export default function HeroSection({ opacity, scale }: HeroSectionProps) {
           transition={{ delay: 0.6 }}
           className={hs.ctaGroup}
         >
-          <a href="#contact" className={hs.ctaPrimary}>
+          <a href="#contact" className={hs.ctaPrimary} onClick={() => track("hero cta clicked")}>
             {hero.primaryCta} <ArrowRight className={styles.iconMd} />
           </a>
-          <a href={secondaryCtaHref} className={hs.ctaSecondary}>
+          <a href={secondaryCtaHref} className={hs.ctaSecondary} onClick={() => track("hero secondary cta clicked", { cta_text: secondaryCtaText })}>
             {secondaryCtaText}
           </a>
         </motion.div>

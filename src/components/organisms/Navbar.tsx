@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { navbar } from "@/src/content/en";
 import { navbarStyles as ns } from "@/src/styles/navbar";
 import { SHOW_RESULTS, SHOW_CASE_STUDIES } from "@/src/config/flags";
+import { track } from "@/src/lib/track";
 
 /** IDs of sections hidden by feature flags */
 const hiddenSections = new Set<string>();
@@ -38,7 +39,7 @@ export default function Navbar() {
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
       >
-        <a href="#contact" className={ns.ctaLink}>
+        <a href="#contact" className={ns.ctaLink} onClick={() => track("navbar cta clicked")}>
           {navbar.cta}
         </a>
       </motion.div>
