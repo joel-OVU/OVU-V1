@@ -142,7 +142,7 @@ export default function ContactSection() {
           <div className="absolute inset-6 rounded-full bg-accent/5 blur-3xl pointer-events-none" />
 
           {/* Clean white card */}
-          <div className="relative bg-white border border-ink/5 shadow-xl rounded-[32px] overflow-hidden min-h-[600px] flex flex-col">
+          <div className="relative bg-white border border-ink/5 shadow-xl rounded-[24px] md:rounded-[32px] overflow-hidden min-h-[480px] md:min-h-[560px] flex flex-col">
             <div className={cs.portalHeader}>
               <div className={cs.portalDots}>
                 <div className={cs.portalDotRed} />
@@ -153,11 +153,11 @@ export default function ContactSection() {
             </div>
 
             {/* Cal.com embed wrapper */}
-            <div className="w-full flex-1 bg-white rounded-2xl overflow-hidden border border-ink/5 mx-auto px-2 md:px-4 pb-4">
+            <div className="w-full flex-1 bg-white overflow-hidden mx-auto px-1 md:px-4 pb-2 md:pb-4">
               <div
                 id={CAL_EMBED_ID}
-                className="w-full min-h-[620px] md:min-h-[700px] border-0 bg-white"
-                style={{ width: "100%", height: "100%", overflow: "scroll" }}
+                className="w-full min-h-[480px] md:min-h-[620px] border-0 bg-white"
+                style={{ width: "100%", height: "100%", overflow: "auto" }}
               />
             </div>
           </div>

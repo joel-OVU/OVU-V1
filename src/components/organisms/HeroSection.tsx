@@ -6,6 +6,7 @@ import { styles } from "@/src/styles/shared";
 import { SHOW_RESULTS, SHOW_CASE_STUDIES } from "@/src/config/flags";
 import ScrollIndicator from "@/src/components/atoms/ScrollIndicator";
 import { track } from "@/src/lib/track";
+import { useReducedMotion } from "@/src/hooks/useReducedMotion";
 
 const showResults = SHOW_RESULTS || SHOW_CASE_STUDIES;
 const secondaryCtaText = showResults ? hero.secondaryCta : hero.secondaryCtaFallback;
@@ -17,11 +18,13 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ opacity, scale }: HeroSectionProps) {
+  const reduced = useReducedMotion();
+
   return (
     <section id="hero" className={hs.section}>
-      <motion.div style={{ opacity, scale }} className={hs.contentWrap}>
+      <motion.div style={reduced ? {} : { opacity, scale }} className={hs.contentWrap}>
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={reduced ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
           className={hs.tag}
@@ -30,13 +33,13 @@ export default function HeroSection({ opacity, scale }: HeroSectionProps) {
         </motion.p>
 
         <motion.h1
-          initial="hidden"
+          initial={reduced ? false : "hidden"}
           animate="visible"
           variants={{
             hidden: { opacity: 0 },
             visible: {
               opacity: 1,
-              transition: { staggerChildren: 0.05 },
+              transition: reduced ? {} : { staggerChildren: 0.05 },
             },
           }}
           className={hs.heading}
@@ -44,10 +47,14 @@ export default function HeroSection({ opacity, scale }: HeroSectionProps) {
           {hero.heading.split(" ").map((word, i) => (
             <motion.span
               key={i}
-              variants={{
-                hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
-                visible: { opacity: 1, y: 0, filter: "blur(0px)" },
-              }}
+              variants={
+                reduced
+                  ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
+                  : {
+                      hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
+                      visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+                    }
+              }
               className={
                 word === "elite" || word === "enquiry"
                   ? hs.headingWordAccent
@@ -60,7 +67,7 @@ export default function HeroSection({ opacity, scale }: HeroSectionProps) {
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={reduced ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
           className={hs.subheading}
@@ -69,7 +76,7 @@ export default function HeroSection({ opacity, scale }: HeroSectionProps) {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={reduced ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
           className={hs.ctaGroup}

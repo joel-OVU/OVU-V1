@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { faqStyles as qs } from "@/src/styles/faq";
 import { track } from "@/src/lib/track";
+import { useReducedMotion } from "@/src/hooks/useReducedMotion";
 
 interface FaqCardProps {
   question: string;
@@ -8,9 +9,11 @@ interface FaqCardProps {
 }
 
 export default function FaqCard({ question, answer }: FaqCardProps) {
+  const reduced = useReducedMotion();
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={reduced ? false : { opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       className={qs.card}

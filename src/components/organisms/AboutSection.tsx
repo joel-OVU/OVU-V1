@@ -15,14 +15,12 @@ export default function AboutSection() {
           {about.paragraphs.map((p, i) => (
             <p key={i}>{p}</p>
           ))}
-          <button
-            onClick={() =>
-              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
-            }
+          <a
+            href="#contact"
             className={as_.cta}
           >
             {about.cta} <ArrowRight className={as_.ctaIcon} />
-          </button>
+          </a>
         </div>
       </div>
     </section>

@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { services } from "@/src/content/en";
 import { servicesStyles as ss } from "@/src/styles/services";
+import { useReducedMotion } from "@/src/hooks/useReducedMotion";
 
 interface ServiceCardProps {
   title: string;
@@ -12,10 +13,11 @@ interface ServiceCardProps {
 
 export default function ServiceCard({ title, desc, details }: ServiceCardProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const reduced = useReducedMotion();
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={reduced ? false : { opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       className={ss.card}
@@ -25,6 +27,7 @@ export default function ServiceCard({ title, desc, details }: ServiceCardProps) 
 
       <motion.div
         animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+        transition={reduced ? { duration: 0 } : undefined}
         className={ss.cardDetailsWrap}
       >
         <p className={ss.cardDetails}>{details}</p>
@@ -33,6 +36,7 @@ export default function ServiceCard({ title, desc, details }: ServiceCardProps) 
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={ss.cardToggle}
+        aria-expanded={isOpen}
       >
         {isOpen ? services.cardActions.close : services.cardActions.open}{" "}
         <ArrowRight className={isOpen ? ss.cardToggleIconOpen : ss.cardToggleIcon} />
