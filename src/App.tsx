@@ -5,6 +5,7 @@
 
 import { useScroll, useTransform } from "motion/react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { styles } from "@/src/styles/shared";
 import { SHOW_RESULTS, SHOW_CASE_STUDIES } from "@/src/config/flags";
 import { midCta } from "@/src/content/midCta";
@@ -43,6 +44,7 @@ export default function App() {
       <FaqSection />
       <SiteFooter />
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
