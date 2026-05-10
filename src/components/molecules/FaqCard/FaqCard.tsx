@@ -1,3 +1,4 @@
+import React from "react";
 import { motion } from "motion/react";
 import { faqStyles as qs } from "@/src/styles/faq";
 import { track } from "@/src/lib/track";

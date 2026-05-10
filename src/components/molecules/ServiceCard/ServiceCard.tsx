@@ -1,3 +1,4 @@
+import React from "react";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
