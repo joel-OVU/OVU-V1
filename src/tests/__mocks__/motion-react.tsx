@@ -83,7 +83,7 @@ function createMotionComponent(tag: keyof React.JSX.IntrinsicElements) {
     }
   );
 
-  PassThrough.displayName = `motion.${tag}`;
+  PassThrough.displayName = `motion.${String(tag)}`;
   return PassThrough;
 }
 

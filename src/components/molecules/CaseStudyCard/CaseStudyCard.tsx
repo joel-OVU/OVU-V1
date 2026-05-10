@@ -5,6 +5,7 @@ import { success } from "@/src/content/en";
 import { successStyles as xs } from "@/src/styles/success";
 
 interface CaseStudyCardProps {
+  key?: React.Key;
   image: string;
   title: string;
   metric: string;

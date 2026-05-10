@@ -1,7 +1,9 @@
+import React from "react";
 import { footerStyles as fts } from "@/src/styles/footer";
 import { track } from "@/src/lib/track";
 
 interface FooterColumnProps {
+  key?: React.Key;
   heading: string;
   links: ReadonlyArray<{ readonly label: string; readonly href: string }>;
 }

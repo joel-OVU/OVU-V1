@@ -1,7 +1,9 @@
+import React from "react";
 import { X } from "lucide-react";
 import { servicesStyles as ss } from "@/src/styles/services";
 
 interface ExclusionChipProps {
+  key?: React.Key;
   label: string;
 }
 

@@ -6,6 +6,7 @@ import { servicesStyles as ss } from "@/src/styles/services";
 import { useReducedMotion } from "@/src/hooks/useReducedMotion";
 
 interface ServiceCardProps {
+  key?: React.Key;
   title: string;
   desc: string;
   details: string;

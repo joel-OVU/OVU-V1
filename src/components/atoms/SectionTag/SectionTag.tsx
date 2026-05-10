@@ -1,3 +1,4 @@
+import React from "react";
 interface SectionTagProps {
   children: React.ReactNode;
   className?: string;

@@ -4,6 +4,7 @@ import { track } from "@/src/lib/track";
 import { useReducedMotion } from "@/src/hooks/useReducedMotion";
 
 interface FaqCardProps {
+  key?: React.Key;
   question: string;
   answer: string;
 }
