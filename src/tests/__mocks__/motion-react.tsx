@@ -55,7 +55,14 @@ function createMotionComponent(tag: keyof React.JSX.IntrinsicElements) {
     "style",           // keep — may be valid; but framer passes MotionValues here
   ]);
 
-  const PassThrough = React.forwardRef<HTMLElement, AnyProps>(
+  // Use a typed interface so `children` is explicitly React.ReactNode,
+  // not `unknown` (which AnyProps would infer via Record<string, unknown>).
+  interface PassThroughProps extends AnyProps {
+    children?: React.ReactNode;
+    style?: React.CSSProperties | Record<string, unknown>;
+  }
+
+  const PassThrough = React.forwardRef<HTMLElement, PassThroughProps>(
     ({ children, style, ...rest }, ref) => {
       // Strip motion-specific props to avoid React unknown-prop warnings
       const domProps: AnyProps = {};
@@ -72,7 +79,7 @@ function createMotionComponent(tag: keyof React.JSX.IntrinsicElements) {
           ? (style as React.CSSProperties)
           : undefined;
 
-      return React.createElement(tag, { ...domProps, ref, style: safeStyle }, children);
+      return React.createElement(tag, { ...domProps, ref, style: safeStyle }, children as React.ReactNode);
     }
   );
 
