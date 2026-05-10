@@ -3,8 +3,8 @@ import { BarChart3, Calendar } from "lucide-react";
 import { contact } from "@/src/content/en";
 import { contactStyles as cs } from "@/src/styles/contact";
 import { SHOW_TESTIMONIALS } from "@/src/config/flags";
-import BenefitItem from "@/src/components/molecules/BenefitItem";
-import Testimonial from "@/src/components/molecules/Testimonial";
+import BenefitItem from "@/src/components/molecules/BenefitItem/BenefitItem";
+import Testimonial from "@/src/components/molecules/Testimonial/Testimonial";
 import { track } from "@/src/lib/track";
 
 const CAL_EMBED_ID = "cal-inline-embed";

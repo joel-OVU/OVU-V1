@@ -4,7 +4,7 @@ import { hero } from "@/src/content/en";
 import { heroStyles as hs } from "@/src/styles/hero";
 import { styles } from "@/src/styles/shared";
 import { SHOW_RESULTS, SHOW_CASE_STUDIES } from "@/src/config/flags";
-import ScrollIndicator from "@/src/components/atoms/ScrollIndicator";
+import ScrollIndicator from "@/src/components/atoms/ScrollIndicator/ScrollIndicator";
 import { track } from "@/src/lib/track";
 import { useReducedMotion } from "@/src/hooks/useReducedMotion";
 

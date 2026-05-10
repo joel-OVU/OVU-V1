@@ -3,33 +3,35 @@ import { vi } from 'vitest';
 
 // Mock IntersectionObserver which is used by motion's whileInView
 class MockIntersectionObserver {
-  readonly root: Element | null = null;
-  readonly rootMargin: string = '';
-  readonly thresholds: ReadonlyArray<number> = [];
-  
-  constructor(
-    private callback: IntersectionObserverCallback,
-    _options?: IntersectionObserverInit
-  ) {
-    // Immediately invoke callback with all entries as intersecting
-    setTimeout(() => {
-      this.callback(
-        [{ isIntersecting: true, intersectionRatio: 1 }] as IntersectionObserverEntry[],
-        this as unknown as IntersectionObserver
-      );
-    }, 0);
-  }
-
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-  takeRecords(): IntersectionObserverEntry[] { return []; }
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+  takeRecords = () => [];
 }
 
 Object.defineProperty(window, 'IntersectionObserver', {
   writable: true,
   value: MockIntersectionObserver,
 });
+
+class MockResizeObserver {
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+}
+
+Object.defineProperty(window, 'ResizeObserver', {
+  writable: true,
+  value: MockResizeObserver,
+});
+
+if (typeof window.PointerEvent === 'undefined') {
+  class PointerEvent extends Event {}
+  Object.defineProperty(window, 'PointerEvent', {
+    writable: true,
+    value: PointerEvent,
+  });
+}
 
 // Mock window.scrollTo
 window.scrollTo = vi.fn() as unknown as typeof window.scrollTo;

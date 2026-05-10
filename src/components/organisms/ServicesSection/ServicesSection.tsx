@@ -2,8 +2,8 @@ import { useEffect, useRef } from "react";
 import { services } from "@/src/content/en";
 import { servicesStyles as ss } from "@/src/styles/services";
 import { styles } from "@/src/styles/shared";
-import ServiceCard from "@/src/components/molecules/ServiceCard";
-import ExclusionChip from "@/src/components/atoms/ExclusionChip";
+import ServiceCard from "@/src/components/molecules/ServiceCard/ServiceCard";
+import ExclusionChip from "@/src/components/atoms/ExclusionChip/ExclusionChip";
 import { track } from "@/src/lib/track";
 
 export default function ServicesSection() {

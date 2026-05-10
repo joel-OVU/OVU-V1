@@ -1,7 +1,7 @@
 import { navbar, footer } from "@/src/content/en";
 import { footerStyles as fts } from "@/src/styles/footer";
 import { SHOW_RESULTS, SHOW_CASE_STUDIES } from "@/src/config/flags";
-import FooterColumn from "@/src/components/molecules/FooterColumn";
+import FooterColumn from "@/src/components/molecules/FooterColumn/FooterColumn";
 
 const showResults = SHOW_RESULTS || SHOW_CASE_STUDIES;
 

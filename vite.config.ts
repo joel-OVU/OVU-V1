@@ -23,7 +23,13 @@ export default defineConfig(({ mode }) => {
       environment: 'happy-dom',
       globals: true,
       setupFiles: './src/tests/setupTests.ts',
-      css: true,
+      css: false,
+      alias: {
+        // Swap out the real Framer Motion library for a lightweight stub.
+        // This prevents motion components from polling the DOM in a headless
+        // environment, which causes Vitest to hang indefinitely.
+        'motion/react': path.resolve(__dirname, './src/tests/__mocks__/motion-react.tsx'),
+      },
     },
     build: {
       chunkSizeWarningLimit: 1000,

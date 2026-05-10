@@ -1,8 +1,8 @@
 import { success } from "@/src/content/en";
 import { successStyles as xs, caseStudySpans } from "@/src/styles/success";
 import { styles } from "@/src/styles/shared";
-import StatBlock from "@/src/components/atoms/StatBlock";
-import CaseStudyCard from "@/src/components/molecules/CaseStudyCard";
+import StatBlock from "@/src/components/atoms/StatBlock/StatBlock";
+import CaseStudyCard from "@/src/components/molecules/CaseStudyCard/CaseStudyCard";
 
 export default function SuccessSection() {
   return (

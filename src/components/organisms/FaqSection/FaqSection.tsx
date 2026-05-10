@@ -1,6 +1,6 @@
 import { faq } from "@/src/content/en";
 import { faqStyles as qs } from "@/src/styles/faq";
-import FaqCard from "@/src/components/molecules/FaqCard";
+import FaqCard from "@/src/components/molecules/FaqCard/FaqCard";
 
 export default function FaqSection() {
   return (
