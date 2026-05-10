@@ -1,0 +1,435 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Atom Snapshots > ExclusionChip — renders label with X icon 1`] = `
+<DocumentFragment>
+  <div
+    class="px-5 py-2 border border-ink/5 rounded-full flex items-center gap-2 text-ink/50 font-mono text-xs"
+  >
+    <svg
+      aria-hidden="true"
+      class="lucide lucide-x w-3 h-3"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M18 6 6 18"
+      />
+      <path
+        d="m6 6 12 12"
+      />
+    </svg>
+     SEO
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Atom Snapshots > ScrollIndicator — renders motion scroll hint 1`] = `
+<DocumentFragment>
+  <div
+    class="hidden md:block absolute bottom-6 left-1/2 -translate-x-1/2"
+  >
+    <div
+      class="w-5 h-10 rounded-full border border-ink/20 flex justify-center p-1"
+    >
+      <div
+        class="w-1 h-2 bg-ink/40 rounded-full"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Atom Snapshots > SectionTag — custom className override 1`] = `
+<DocumentFragment>
+  <p
+    class="text-sm text-ink"
+  >
+    Custom Class
+  </p>
+</DocumentFragment>
+`;
+
+exports[`Atom Snapshots > SectionTag — default styling 1`] = `
+<DocumentFragment>
+  <p
+    class="font-mono text-xs uppercase tracking-widest text-accent mb-8"
+  >
+    OVU Focus
+  </p>
+</DocumentFragment>
+`;
+
+exports[`Atom Snapshots > StatBlock — renders value and label 1`] = `
+<DocumentFragment>
+  <div
+    class="text-right"
+  >
+    <p
+      class="text-4xl font-medium leading-none"
+    >
+      £1.2M+
+    </p>
+    <p
+      class="text-sm font-mono text-ink/55 uppercase"
+    >
+      Revenue generated
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Molecule Snapshots > BenefitItem — renders icon, title and description 1`] = `
+<DocumentFragment>
+  <div
+    class="flex items-start gap-3 md:gap-4"
+  >
+    <div
+      class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-paper flex items-center justify-center shrink-0"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-circle-check-big w-5 h-5 md:w-6 md:h-6 text-accent"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21.801 10A10 10 0 1 1 17 3.335"
+        />
+        <path
+          d="m9 11 3 3L22 4"
+        />
+      </svg>
+    </div>
+    <div>
+      <h4
+        class="text-base md:text-lg font-medium"
+      >
+        Conversion Audit
+      </h4>
+      <p
+        class="text-ink/60 text-sm"
+      >
+        We map every friction point in your current funnel.
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Molecule Snapshots > CaseStudyCard — renders with image, metric, and title 1`] = `
+<DocumentFragment>
+  <div
+    class="group relative rounded-[40px] overflow-hidden bg-ink cursor-pointer md:col-span-8 h-[500px]"
+    id="cs-test"
+  >
+    <img
+      alt="Global Property Collective"
+      class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700 blur-[2px] group-hover:blur-0"
+      src="https://images.unsplash.com/photo-1600880292203?w=800"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent"
+    />
+    <div
+      class="absolute bottom-0 left-0 p-8 md:p-12 w-full"
+    >
+      <div
+        class="inline-block px-3 py-1 bg-accent rounded-full text-[10px] font-mono font-bold uppercase tracking-widest text-white mb-4"
+      >
+        £480K
+      </div>
+      <h3
+        class="text-3xl md:text-4xl text-paper font-medium mb-4 leading-none tracking-tight"
+      >
+        Global Property Collective
+      </h3>
+      <div
+        class="overflow-hidden"
+      >
+        <p
+          class="text-paper font-light max-w-sm"
+        >
+          A 90-day funnel rebuild that generated £480K in revenue.
+        </p>
+      </div>
+      <div
+        class="mt-6 text-xs font-mono uppercase tracking-widest text-white/50 group-hover:text-accent transition-colors cursor-pointer"
+      >
+        View Case Study
+      </div>
+    </div>
+    <div
+      class="absolute top-10 right-12 w-10 h-10 rounded-full bg-paper/10 backdrop-blur-md border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-arrow-right w-5 h-5 text-accent transition-transform"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M5 12h14"
+        />
+        <path
+          d="m12 5 7 7-7 7"
+        />
+      </svg>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Molecule Snapshots > FaqCard — renders question and answer 1`] = `
+<DocumentFragment>
+  <div
+    class="p-5 md:p-8 bg-white border border-ink/5 rounded-2xl md:rounded-3xl"
+  >
+    <h4
+      class="text-lg md:text-xl font-medium mb-3 md:mb-4"
+    >
+      How fast will the protocol deliver results?
+    </h4>
+    <p
+      class="text-ink/70 font-light leading-relaxed text-sm md:text-base"
+    >
+      Timelines depend on your current setup, traffic, and offer.
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Molecule Snapshots > FooterColumn — renders heading and links 1`] = `
+<DocumentFragment>
+  <div>
+    <h5
+      class="text-xs font-mono uppercase tracking-widest text-ink/50 mb-4 md:mb-5"
+    >
+      Protocol
+    </h5>
+    <ul
+      class="space-y-3 md:space-y-4 text-sm font-medium"
+    >
+      <li>
+        <a
+          class="hover:text-accent transition-colors cursor-pointer"
+          href="#services"
+        >
+          Services
+        </a>
+      </li>
+      <li>
+        <a
+          class="hover:text-accent transition-colors cursor-pointer"
+          href="#faq"
+        >
+          FAQ
+        </a>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Molecule Snapshots > MidPageCta — dark variant 1`] = `
+<DocumentFragment>
+  <div
+    class="py-12 md:py-16 px-6 md:px-12 bg-ink text-paper"
+  >
+    <div
+      class="max-w-2xl mx-auto text-center"
+    >
+      <h3
+        class="font-display text-2xl md:text-4xl tracking-tight mb-3 md:mb-4 leading-tight text-paper"
+      >
+        The OVU Protocol
+      </h3>
+      <p
+        class="text-base md:text-lg font-light mb-6 md:mb-8 max-w-lg mx-auto text-paper/70"
+      >
+        Built for businesses that are serious about growth.
+      </p>
+      <a
+        class="inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-medium transition-all hover:scale-105 cursor-pointer bg-paper text-ink hover:bg-accent hover:text-white"
+        href="#features"
+      >
+        Learn more 
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-arrow-right w-4 h-4"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5 12h14"
+          />
+          <path
+            d="m12 5 7 7-7 7"
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Molecule Snapshots > MidPageCta — light variant (default) 1`] = `
+<DocumentFragment>
+  <div
+    class="py-12 md:py-16 px-6 md:px-12 bg-paper"
+  >
+    <div
+      class="max-w-2xl mx-auto text-center"
+    >
+      <h3
+        class="font-display text-2xl md:text-4xl tracking-tight mb-3 md:mb-4 leading-tight text-ink"
+      >
+        Ready to scale?
+      </h3>
+      <p
+        class="text-base md:text-lg font-light mb-6 md:mb-8 max-w-lg mx-auto text-ink/70"
+      >
+        Join the OVU partner programme today.
+      </p>
+      <a
+        class="inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-medium transition-all hover:scale-105 cursor-pointer bg-ink text-paper hover:bg-accent"
+        href="#contact"
+      >
+        Book a call 
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-arrow-right w-4 h-4"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5 12h14"
+          />
+          <path
+            d="m12 5 7 7-7 7"
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Molecule Snapshots > ServiceCard — closed state (default) 1`] = `
+<DocumentFragment>
+  <div
+    class="p-6 md:p-8 bg-paper border border-ink/5 rounded-[24px] md:rounded-[32px] group hover:border-accent/20 transition-all duration-500 cursor-pointer"
+  >
+    <h3
+      class="text-xl md:text-2xl font-medium mb-3 group-hover:text-accent transition-colors"
+    >
+      Funnel Engineering
+    </h3>
+    <p
+      class="text-ink/70 font-light mb-4 md:mb-5 leading-relaxed text-sm md:text-base"
+    >
+      High-performance acquisition via Meta and Google.
+    </p>
+    <div
+      class="overflow-hidden"
+    >
+      <p
+        class="text-sm text-ink/80 bg-white/50 p-4 rounded-2xl mb-4 md:mb-5 border border-ink/5 font-light"
+      >
+        Includes precise audience targeting, creative testing, and attribution setup.
+      </p>
+    </div>
+    <button
+      aria-expanded="false"
+      class="text-xs font-mono uppercase tracking-widest font-bold text-ink/50 hover:text-accent transition-colors flex items-center gap-2 cursor-pointer"
+    >
+      Strategy Details 
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-arrow-right w-3 h-3 transition-transform"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M5 12h14"
+        />
+        <path
+          d="m12 5 7 7-7 7"
+        />
+      </svg>
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Molecule Snapshots > Testimonial — renders quote, initials, name and role 1`] = `
+<DocumentFragment>
+  <div
+    class="mt-8 md:mt-10 p-6 md:p-8 border-l-4 border-accent bg-paper/50 rounded-r-2xl italic text-ink/70"
+  >
+    OVU transformed our enquiry pipeline completely.
+    <div
+      class="mt-4 not-italic flex items-center gap-3"
+    >
+      <div
+        class="w-10 h-10 rounded-full bg-ink/10 flex items-center justify-center font-bold text-xs uppercase text-ink/50"
+      >
+        SC
+      </div>
+      <div>
+        <p
+          class="text-sm font-bold"
+        >
+          Sarah Collins
+        </p>
+        <p
+          class="text-xs font-mono text-ink/50 uppercase"
+        >
+          Director, Kensington Suites
+        </p>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
