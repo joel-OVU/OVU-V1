@@ -1,6 +1,7 @@
 import React from "react";
 import { footerStyles as fts } from "@/src/styles/footer";
 import { track } from "@/src/lib/track";
+import { COOKIE_SETTINGS_HREF, openCookieSettings } from "@/src/lib/consent";
 
 interface FooterColumnProps {
   key?: React.Key;
@@ -18,7 +19,13 @@ export default function FooterColumn({ heading, links }: FooterColumnProps) {
             <a
               href={link.href}
               className={fts.columnLink}
-              onClick={() => track("footer link clicked", { label: link.label, href: link.href, column: heading })}
+              onClick={(event) => {
+                if (link.href === COOKIE_SETTINGS_HREF) {
+                  event.preventDefault();
+                  openCookieSettings();
+                }
+                track("footer link clicked", { label: link.label, href: link.href, column: heading });
+              }}
             >{link.label}</a>
           </li>
         ))}

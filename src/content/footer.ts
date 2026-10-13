@@ -24,7 +24,8 @@ export const footer = {
       heading: "Legal",
       links: [
         { label: "Terms", href: "#" },
-        { label: "Privacy", href: "#" },
+        { label: "Privacy", href: "/privacy-policy" },
+        { label: "Cookie Settings", href: "#cookie-settings" },
       ],
     },
   },

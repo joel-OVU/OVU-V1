@@ -1,14 +1,18 @@
-# Design System Master File
+# OVU Design System
 
 > **LOGIC:** When building a specific page, first check `design-system/pages/[page-name].md`.
 > If that file exists, its rules **override** this Master file.
 > If not, strictly follow the rules below.
+>
+> This file documents what is **implemented** in the site. The source of truth is
+> `src/index.css` (`@theme` tokens) and the class maps in `src/styles/`. Update this
+> file whenever those change.
 
 ---
 
 **Project:** OVU
-**Generated:** 2026-05-01 16:14:01
 **Category:** Marketing Agency
+**Updated:** 2026-10-13
 
 ---
 
@@ -16,53 +20,53 @@
 
 ### Color Palette
 
-| Role | Hex | CSS Variable |
-|------|-----|--------------|
-| Primary | `#0F172A` | `--color-primary` |
-| On Primary | `#FFFFFF` | `--color-on-primary` |
-| Secondary | `#334155` | `--color-secondary` |
-| Accent/CTA | `#0369A1` | `--color-accent` |
-| Background | `#F8FAFC` | `--color-background` |
-| Foreground | `#020617` | `--color-foreground` |
-| Muted | `#E8ECF1` | `--color-muted` |
-| Border | `#E2E8F0` | `--color-border` |
-| Destructive | `#DC2626` | `--color-destructive` |
-| Ring | `#0F172A` | `--color-ring` |
+Defined as semantic Tailwind v4 tokens in `src/index.css`. Never use default Tailwind colours for brand elements.
 
-**Color Notes:** Professional navy + blue CTA
+| Role | Hex | Token | Usage |
+|------|-----|-------|-------|
+| Paper (background) | `#F9F7F3` | `paper` | Page background, text on dark |
+| Ink (foreground) | `#0F0E24` | `ink` | Text, primary buttons, dark sections |
+| Accent | `#FC3792` | `accent` | Tags, highlights, focus rings, selection |
+| Accent dark | `#B90EDE` | `accent-dark` | Gradient partner for accent |
+
+Neutral tints are expressed as opacity of ink or paper: `text-ink/70` body copy, `border-ink/10` borders, `bg-ink/5` hover fills, `text-paper/60` on dark sections. White (`bg-white`) is used for alternating light sections and inner cards.
+
+**Color Notes:** Warm off-white paper, deep indigo ink, hot-pink accent. Accent is used sparingly for emphasis, never for large fills.
 
 ### Typography
 
-- **Heading Font:** Calistoga
-- **Body Font:** Inter
-- **Mood:** saas, boutique, electric, warm, editorial, bold, premium, fintech, business, dual font, human warmth
-- **Google Fonts:** [Calistoga + Inter](https://fonts.google.com/share?selection.family=Calistoga:ital@0;1|Inter:wght@300;400;500;600;700|JetBrains+Mono:wght@400;500)
+| Token | Font | Usage |
+|-------|------|-------|
+| `font-display` | Calistoga | Headings, large editorial type (often with `italic` on highlight words) |
+| `font-sans` | Inter (300–600) | Body copy; body text is `font-light` |
+| `font-mono` | JetBrains Mono | Section tags, labels, metadata — `text-xs uppercase tracking-widest` |
+
+- Headings use `tracking-tight` or `tracking-tighter` and tight leading (`leading-[0.9]`–`leading-none`).
+- Section tags: `font-mono text-xs uppercase tracking-widest text-accent`.
 
 **CSS Import:**
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Calistoga:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Calistoga&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 ```
 
-### Spacing Variables
+### Spacing & Layout
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--space-xs` | `4px` / `0.25rem` | Tight gaps |
-| `--space-sm` | `8px` / `0.5rem` | Icon gaps, inline spacing |
-| `--space-md` | `16px` / `1rem` | Standard padding |
-| `--space-lg` | `24px` / `1.5rem` | Section padding |
-| `--space-xl` | `32px` / `2rem` | Large gaps |
-| `--space-2xl` | `48px` / `3rem` | Section margins |
-| `--space-3xl` | `64px` / `4rem` | Hero padding |
+- Container: `max-w-7xl mx-auto`; reading width for long copy: `max-w-3xl`.
+- Section padding: `py-14 md:py-20 px-6 md:px-12`; hero uses larger top padding to clear the navbar.
+- Use `min-h-[100dvh]` / `svh`, never `100vh` (iOS Safari).
+- Breakpoints verified: 375px, 768px, 1024px, 1440px.
 
-### Shadow Depths
+### Radius, Borders & Shadows
 
-| Level | Value | Usage |
-|-------|-------|-------|
-| `--shadow-sm` | `0 1px 2px rgba(0,0,0,0.05)` | Subtle lift |
-| `--shadow-md` | `0 4px 6px rgba(0,0,0,0.1)` | Cards, buttons |
-| `--shadow-lg` | `0 10px 15px rgba(0,0,0,0.1)` | Modals, dropdowns |
-| `--shadow-xl` | `0 20px 25px rgba(0,0,0,0.15)` | Hero images, featured cards |
+| Element | Style |
+|---------|-------|
+| Buttons, chips, tags | `rounded-full` |
+| Cards | `rounded-[24px] md:rounded-[32px]` with `border border-ink/5` |
+| Inner panels, overlays, banner | `rounded-3xl` (`rounded-2xl` for nested rows) |
+| Borders | 1px, `ink/5`–`ink/10` (`white/10` on dark) |
+| Floating surfaces | Soft deep shadow, e.g. `shadow-[0_24px_60px_-12px_rgba(15,14,36,0.28)]` |
+
+Glassmorphism (`backdrop-blur-xl` over a translucent `paper`/`white` fill) is used for the navbar, protocol card and cookie banner.
 
 ---
 
@@ -70,125 +74,70 @@
 
 ### Buttons
 
-```css
-/* Primary Button */
-.btn-primary {
-  background: #0369A1;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 200ms ease;
-  cursor: pointer;
-}
+Class maps live in `src/styles/*.ts`.
 
-.btn-primary:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-/* Secondary Button */
-.btn-secondary {
-  background: transparent;
-  color: #0F172A;
-  border: 2px solid #0F172A;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 200ms ease;
-  cursor: pointer;
-}
+```text
+Primary   px-8 py-4 md:px-10 md:py-5 bg-ink text-paper rounded-full font-medium
+          hover:scale-105 transition-transform cursor-pointer
+Secondary px-8 py-4 md:px-10 md:py-5 bg-transparent border border-ink/10 rounded-full
+          font-medium hover:bg-ink/5 transition-colors cursor-pointer
+Compact   min-h-11 px-5 py-3 rounded-full text-sm (cookie banner, privacy page)
 ```
+
+- Touch targets are at least 44×44px.
+- Accept and reject style choices (cookie banner) must be visually identical.
 
 ### Cards
 
-```css
-.card {
-  background: #F8FAFC;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: var(--shadow-md);
-  transition: all 200ms ease;
-  cursor: pointer;
-}
-
-.card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
-}
+```text
+bg-paper border border-ink/5 rounded-[24px] md:rounded-[32px] p-6 md:p-8
+group hover:border-accent/20 transition-all duration-500 cursor-pointer
 ```
 
-### Inputs
+Dark-section cards use `bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl`.
 
-```css
-.input {
-  padding: 12px 16px;
-  border: 1px solid #E2E8F0;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: border-color 200ms ease;
-}
+### Cookie banner & privacy page
 
-.input:focus {
-  border-color: #0F172A;
-  outline: none;
-  box-shadow: 0 0 0 3px #0F172A20;
-}
-```
+- Banner: fixed bottom-right (`sm:right-6 sm:bottom-6 sm:w-[26rem]`, full-width with margins on mobile), `z-[10000]`, `bg-paper/85 backdrop-blur-xl`, fade-in via `CookieConsent.css`.
+- Privacy page: `max-w-3xl` article, `font-display` headings, sections separated by `border-t border-ink/10`.
 
-### Modals
+### Focus
 
-```css
-.modal-overlay {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-}
-
-.modal {
-  background: white;
-  border-radius: 16px;
-  padding: 32px;
-  box-shadow: var(--shadow-xl);
-  max-width: 500px;
-  width: 90%;
-}
-```
+Global `:focus-visible` is a 2px `accent` outline with 2px offset (`src/index.css`). Never remove it.
 
 ---
 
-## Style Guidelines
+## Motion
 
-**Style:** Kinetic Brutalism (Mobile)
+- Scroll reveals: `motion` `whileInView` with `initial={{ opacity: 0, y: 20–30 }}`, `viewport={{ once: true }}`.
+- Hover and state transitions: 200–500ms; entrance animations ≤ 450ms.
+- Continuous loops (marquees) use CSS keyframes, not JS.
+- `prefers-reduced-motion` is respected globally in `src/index.css` and via `useReducedMotion`.
 
-**Keywords:** kinetic, brutalism, motion, marquee, acid yellow, uppercase, oversized, aggressive typography, street, zine, high contrast, scroll-driven, haptic, reanimated
+---
 
-**Best For:** Immersive storytelling apps, brand flagship mobile, music/culture platforms, sports apps, underground zines, limited-edition product drops, performance dashboards
+## Page Pattern
 
-**Key Effects:** Infinite marquee (Reanimated, Linear easing, 5s loop, hard clip), hero parallax (scale 1.0→1.3 + fade), sticky section header push, card flood inversion on press (bg→#DFE104, text→#000000), haptic Medium on every press, scroll-triggered interpolate transforms, 0px radius, 2px borders, 100ms color transitions
+**Pattern Name:** Funnel (conversion landing page)
 
-### Page Pattern
-
-**Pattern Name:** Funnel (3-Step Conversion)
-
-- **Conversion Strategy:** Progressive disclosure. Show only essential info per step. Use progress indicators. Multiple CTAs.
-- **CTA Placement:** Each step: mini-CTA. Final: main CTA
-- **Section Order:** 1. Hero, 2. Step 1 (problem), 3. Step 2 (solution), 4. Step 3 (action), 5. CTA progression
+- **Conversion Strategy:** Progressive disclosure with repeated CTAs; the final action is booking a discovery call.
+- **Section Order:** Hero → Services → CTA → Features → CTA → About → Proof (flag-gated) → Success (flag-gated) → CTA → Contact → FAQ → Footer.
+- **CTA Placement:** Navbar "Book Call", hero primary/secondary, mid-page CTAs between sections.
 
 ---
 
 ## Anti-Patterns (Do NOT Use)
 
-- ❌ Boring design
-- ❌ Hidden work
-
-### Additional Forbidden Patterns
-
-- ❌ **Emojis as icons** — Use SVG icons (Heroicons, Lucide, Simple Icons)
-- ❌ **Missing cursor:pointer** — All clickable elements must have cursor:pointer
-- ❌ **Layout-shifting hovers** — Avoid scale transforms that shift layout
-- ❌ **Low contrast text** — Maintain 4.5:1 minimum contrast ratio
-- ❌ **Instant state changes** — Always use transitions (150-300ms)
-- ❌ **Invisible focus states** — Focus states must be visible for a11y
+- ❌ **Emojis as icons** — use SVG icons (Lucide)
+- ❌ **Missing `cursor-pointer`** on clickable elements
+- ❌ **Layout-shifting hovers** that move surrounding content
+- ❌ **Low contrast text** — keep 4.5:1 minimum (avoid `text-ink/40` for body copy)
+- ❌ **Instant state changes** — always transition (150–500ms)
+- ❌ **Invisible focus states**
+- ❌ **Raw Tailwind palette colours** (`bg-red-500`) for brand elements — use tokens
+- ❌ **Hardcoded copy in components** — copy lives in `src/content/`
+- ❌ **Hover-only information** — mobile users can't hover
+- ❌ **Dark patterns in consent UI** — accept and reject must look equally prominent
 
 ---
 
@@ -196,13 +145,15 @@
 
 Before delivering any UI code, verify:
 
-- [ ] No emojis used as icons (use SVG instead)
-- [ ] All icons from consistent icon set (Heroicons/Lucide)
+- [ ] No emojis used as icons (SVG only, Lucide)
+- [ ] Colours come from semantic tokens (`paper`, `ink`, `accent`)
 - [ ] `cursor-pointer` on all clickable elements
-- [ ] Hover states with smooth transitions (150-300ms)
-- [ ] Light mode: text contrast 4.5:1 minimum
+- [ ] Hover states with smooth transitions
+- [ ] Text contrast 4.5:1 minimum
 - [ ] Focus states visible for keyboard navigation
 - [ ] `prefers-reduced-motion` respected
-- [ ] Responsive: 375px, 768px, 1024px, 1440px
-- [ ] No content hidden behind fixed navbars
+- [ ] Responsive at 375px, 768px, 1024px, 1440px
+- [ ] No content hidden behind the fixed navbar
 - [ ] No horizontal scroll on mobile
+- [ ] Copy added to `src/content/`, class maps to `src/styles/`
+- [ ] Any new third-party script is gated in `activateTracking()` and listed in the privacy policy

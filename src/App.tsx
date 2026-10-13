@@ -4,8 +4,6 @@
  */
 
 import { useScroll, useTransform } from "motion/react";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/react";
 import { styles } from "@/src/styles/shared";
 import { SHOW_RESULTS, SHOW_CASE_STUDIES } from "@/src/config/flags";
 import { midCta } from "@/src/content/midCta";
@@ -20,6 +18,7 @@ import SuccessSection from "@/src/components/organisms/SuccessSection/SuccessSec
 import ContactSection from "@/src/components/organisms/ContactSection/ContactSection";
 import FaqSection from "@/src/components/organisms/FaqSection/FaqSection";
 import SiteFooter from "@/src/components/organisms/SiteFooter/SiteFooter";
+import CookieConsent from "@/src/components/organisms/CookieConsent/CookieConsent";
 
 const showSuccess = SHOW_RESULTS || SHOW_CASE_STUDIES;
 
@@ -30,6 +29,8 @@ export default function App() {
 
   return (
     <div id="app-root" className={styles.root}>
+      {/* First in DOM so keyboard users reach the consent choices immediately. Fixed-positioned bottom-right. */}
+      <CookieConsent />
       <Navbar />
       <HeroSection opacity={opacity} scale={scale} />
       <ServicesSection />
@@ -43,8 +44,6 @@ export default function App() {
       <ContactSection />
       <FaqSection />
       <SiteFooter />
-      <Analytics />
-      <SpeedInsights />
     </div>
   );
 }

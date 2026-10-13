@@ -19,6 +19,8 @@ import { success } from "./success";
 import { contact } from "./contact";
 import { faq } from "./faq";
 import { footer } from "./footer";
+import { cookieConsent } from "./cookieConsent";
+import { privacyPolicy } from "./privacyPolicy";
 
 export const content = {
   navbar,
@@ -30,8 +32,10 @@ export const content = {
   contact,
   faq,
   footer,
+  cookieConsent,
+  privacyPolicy,
 } as const;
 
 export type Content = typeof content;
 
-export { navbar, hero, services, features, about, success, contact, faq, footer };
+export { navbar, hero, services, features, about, success, contact, faq, footer, cookieConsent, privacyPolicy };

@@ -7,7 +7,7 @@ import { POSTHOG_API_KEY, POSTHOG_HOST } from "@/src/config/posthog";
 
 let initialized = false;
 
-/** Initialize PostHog — call once at app startup. */
+/** Initialize PostHog (cookieless, not consent-gated) — call once at app startup. */
 export function initAnalytics(): void {
   if (initialized) return;
   if (POSTHOG_API_KEY.includes("REPLACE")) {
@@ -19,7 +19,9 @@ export function initAnalytics(): void {
     autocapture: true,
     capture_pageview: true,
     capture_pageleave: true,
-    persistence: "localStorage+cookie",
+    // Cookieless: nothing is written to cookies or localStorage, so no consent
+    // banner is required for it. Visitors are not recognised across page loads.
+    persistence: "memory",
   });
   initialized = true;
 }

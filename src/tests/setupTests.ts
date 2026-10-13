@@ -1,5 +1,11 @@
 import '@testing-library/jest-dom/vitest';
-import { vi } from 'vitest';
+import { beforeEach, vi } from 'vitest';
+
+// Existing suites predate the cookie banner — start each test with a stored
+// decision so the banner stays out of the way. CookieConsent.test.tsx clears it.
+beforeEach(() => {
+  window.localStorage.setItem('site_cookie_consent', 'rejected');
+});
 
 // Mock IntersectionObserver which is used by motion's whileInView
 class MockIntersectionObserver {
